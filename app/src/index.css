@@ -1,1 +1,21 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap');
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0f2e;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: 'Syne', sans-serif; }
+
+::selection { background: #f5c518; color: #0a0f2e; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0f2e; }
+::-webkit-scrollbar-thumb { background: #f5c518; border-radius: 2px; }

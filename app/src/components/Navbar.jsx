@@ -13,53 +13,61 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    const fn = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', fn)
+    return () => window.removeEventListener('scroll', fn)
   }, [])
 
   return (
     <motion.nav
-      initial={{ y: -60, opacity: 0 }}
+      initial={{ y: -70, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 backdrop-blur shadow-sm' : 'bg-transparent'
-      }`}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      style={{ background: scrolled ? 'rgba(10,15,46,0.95)' : 'transparent' }}
+      className="fixed top-0 inset-x-0 z-50 transition-all duration-500 backdrop-blur-md border-b border-transparent"
+      data-scrolled={scrolled}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center text-white font-bold text-sm">SE</div>
-          <span className={`font-bold text-lg tracking-tight transition-colors ${scrolled ? 'text-gray-900' : 'text-white'}`}>
-            Sri Eshwar CE
+
+        {/* Logo */}
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="relative w-9 h-9">
+            <div className="absolute inset-0 rounded-lg bg-[#f5c518] rotate-6 group-hover:rotate-12 transition-transform duration-300" />
+            <div className="absolute inset-0 rounded-lg bg-[#0a0f2e] border-2 border-[#f5c518] flex items-center justify-center">
+              <span className="text-[#f5c518] font-black text-xs tracking-tight">SE</span>
+            </div>
+          </div>
+          <span className="font-black text-white text-base tracking-tight leading-none">
+            Sri Eshwar<br />
+            <span className="text-[#f5c518] text-xs font-semibold tracking-widest uppercase">College of Engg.</span>
           </span>
         </a>
 
-        <ul className="hidden md:flex gap-8">
+        {/* Links */}
+        <ul className="hidden md:flex gap-10">
           {links.map(({ label, href }) => (
             <li key={label}>
-              <a
-                href={href}
-                className={`text-sm font-medium transition-colors hover:text-blue-500 ${scrolled ? 'text-gray-700' : 'text-white/90'}`}
-              >
+              <a href={href} className="relative text-sm font-medium text-white/70 hover:text-white transition-colors group">
                 {label}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#f5c518] group-hover:w-full transition-all duration-300" />
               </a>
             </li>
           ))}
         </ul>
 
+        {/* CTA */}
         <a
           href="#apply"
-          className="hidden md:inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"
+          className="hidden md:inline-flex items-center gap-2 bg-[#f5c518] hover:bg-yellow-300 text-[#0a0f2e] text-sm font-black px-5 py-2.5 rounded-full transition-all duration-200 shadow-lg shadow-yellow-500/20"
         >
-          Apply Now
+          Apply 2025
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
         </a>
 
-        <button
-          className={`md:hidden p-2 ${scrolled ? 'text-gray-900' : 'text-white'}`}
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
+        {/* Hamburger */}
+        <button className="md:hidden text-white p-1" onClick={() => setOpen(!open)}>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {open
               ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -74,19 +82,19 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+            className="md:hidden bg-[#0a0f2e] border-t border-white/10 overflow-hidden"
           >
-            <ul className="flex flex-col px-6 py-4 gap-4">
+            <ul className="flex flex-col px-6 py-5 gap-5">
               {links.map(({ label, href }) => (
                 <li key={label}>
-                  <a href={href} onClick={() => setOpen(false)} className="text-gray-700 font-medium text-sm">
+                  <a href={href} onClick={() => setOpen(false)} className="text-white/80 font-medium text-sm hover:text-[#f5c518] transition-colors">
                     {label}
                   </a>
                 </li>
               ))}
               <li>
-                <a href="#apply" className="inline-block bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full">
-                  Apply Now
+                <a href="#apply" className="inline-block bg-[#f5c518] text-[#0a0f2e] text-sm font-black px-5 py-2.5 rounded-full">
+                  Apply 2025
                 </a>
               </li>
             </ul>
