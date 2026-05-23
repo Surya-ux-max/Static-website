@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -56,15 +57,15 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <a
-          href="#apply"
+        <Link
+          to="/apply"
           className="hidden md:inline-flex items-center gap-2 bg-[#f5c518] hover:bg-yellow-300 text-[#0a0f2e] text-sm font-black px-5 py-2.5 rounded-full transition-all duration-200 shadow-lg shadow-yellow-500/20"
         >
           Apply 2025
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
+        </Link>
 
         {/* Hamburger */}
         <button className="md:hidden text-white p-1" onClick={() => setOpen(!open)}>
@@ -93,9 +94,9 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
-                <a href="#apply" className="inline-block bg-[#f5c518] text-[#0a0f2e] text-sm font-black px-5 py-2.5 rounded-full">
+                <Link to="/apply" className="inline-block bg-[#f5c518] text-[#0a0f2e] text-sm font-black px-5 py-2.5 rounded-full">
                   Apply 2025
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>
