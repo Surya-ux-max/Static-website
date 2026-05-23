@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const PhoneIcon = () => (
   <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,17 +47,15 @@ export default function Footer() {
           <p className="text-[#0a0f2e]/60 max-w-md mx-auto mb-10 text-sm leading-relaxed">
             Applications open for 2025–26. Join Tamil Nadu's fastest-growing engineering college and shape your future.
           </p>
-          <a
-            href="https://sece.ac.in"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/apply"
             className="inline-flex items-center gap-2 bg-[#0a0f2e] text-[#f5c518] font-black px-8 py-4 rounded-full text-sm hover:bg-[#1a2050] transition-colors shadow-2xl"
           >
             Apply at sece.ac.in
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
         </motion.div>
       </section>
 
